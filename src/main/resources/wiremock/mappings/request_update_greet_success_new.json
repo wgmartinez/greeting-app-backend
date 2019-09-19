@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/mock/1.0/greet/sample/.*"
+  },
+  "response" : {
+    "status" : 200,
+    "body": "$(var)",
+    "transformers": ["body-transformer"],
+    "transformerParameters" : {"urlRegex" : "/mock/1.0/greet/(?<var>.*?)"}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/mock/1.0/greet/.*"
+  },
+  "response" : {
+    "status" : 200,
+    "body": "{{request.path.[3]}}",
+    "transformers": ["response-template"]
+  }
+}

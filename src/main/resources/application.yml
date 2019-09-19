@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: greet-application-backend
+  profiles:
+    active: secure
+  main:
+    allowBeanDefinitionOverriding: true
+
+server:
+  servlet:
+    context-path: /country-greeting
+    session:
+      cookie:
+        http-only: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /admin
+
+info.app:
+  name: Sample Application
+  description: Application with basic service.
+  version: ${project.version}
+
+security:
+    oauth2:
+        client:
+            clientId: ycni_system_user
+            clientSecret: password
+            accessTokenUri: https://wso2is-master.dev.sharedapps.intl-au.aws.efx/oauth2/token
+            userAuthorizationUri: https://wso2is-master.dev.sharedapps.intl-au.aws.efx/oauth2/token/authorize
+        resource:
+            filterOrder: 3
+            userInfoUri: https://wso2is-master.dev.sharedapps.intl-au.aws.efx/oauth2/userinfo
+            tokenInfoUri: https://wso2is-master.dev.sharedapps.intl-au.aws.efx/oauth2/introspect
+            preferTokenInfo: true
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            logging: DEBUG
+        security: DEBUG
+    root: INFO
