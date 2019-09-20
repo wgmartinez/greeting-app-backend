@@ -31,4 +31,9 @@ pipeline {
             image 'ubuntu'
         }
     }
+    stages {
+        stage('Build') {
+            echo 'Building..'
+        }
+    }
 }
