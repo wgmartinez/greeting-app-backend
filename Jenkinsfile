@@ -1,40 +1,9 @@
-#!/usr/bin/env groovy
-
 pipeline {
-    /*
-    agent any
-    tools {
-        maven 'Maven'
-        jdk 'JDK'
-        docker 'Docker'
-    } 
+    agent { docker { image 'maven:3.3.3' } }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building..'
-                sh 'mvn clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }*/
-    agent {
-        docker {
-            image 'node:7-alpine'
-        }
-    }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'node --version'
+                sh 'mvn --version'
             }
         }
     }
