@@ -1,6 +1,8 @@
 #!/usr/bin/env groovy
 
 pipeline {
+    /*
+    agent any
     tools {
         maven 'Maven'
         jdk 'JDK'
@@ -22,6 +24,11 @@ pipeline {
             steps {
                 echo 'Deploying....'
             }
+        }
+    }*/
+    agent {
+        docker {
+            image 'ubuntu'
         }
     }
 }
