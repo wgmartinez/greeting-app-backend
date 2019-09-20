@@ -28,13 +28,13 @@ pipeline {
     }*/
     agent {
         docker {
-            image 'ubuntu'
+            image 'node:7-alpine'
         }
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'node --version'
             }
         }
     }
