@@ -1,6 +1,11 @@
 #!/usr/bin/env groovy
 
 pipeline {
+    tools {
+        maven 'Maven'
+        jdk 'JDK'
+        docker 'Docker' 
+    } 
     agent {
         docker {
             image 'maven:3-alpine'
