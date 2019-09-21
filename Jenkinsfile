@@ -7,9 +7,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn clean install'
-                
-                withDockerServer(credentialsId:"equifax_au", [uri: "tcp://10.152.0.2:2376"]) {
+//                sh 'mvn clean install'
+                withDockerServer([credentialsId:"equifax_au", uri: "tcp://10.152.0.2:2376"]) {
                     withDockerRegistry([credentialsId: 'wgmartinez', url: "https://hub.docker.com/"]) {
                         // we give the image the same version as the .war package
 //                        def image = docker.build("<myDockerRegistry>/<myDockerProjectRepo>:${branchVersion}", "--build-arg PACKAGE_VERSION=${branchVersion} ./tmp-docker-build-context")
