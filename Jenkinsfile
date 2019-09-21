@@ -6,9 +6,9 @@ pipeline {
     }  
     stages {
         stage('build') {
-            steps {
-                sh 'mvn clean install'
-            }
+//            steps {
+  //              sh 'mvn clean install'
+    //        }
             steps {
                     withDockerServer([credentialsId:"equifax_au", uri: "tcp://10.152.0.2:2376"]) {
                     withDockerRegistry([credentialsId: 'wgmartinez', url: "https://hub.docker.com/"]) {
