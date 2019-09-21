@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     withDockerServer([uri: "tcp://10.152.0.2:2376"]) {
-                       withDockerRegistry([credentialsId: 'docker-registry-credentials', url: "https://hub.docker.com/"]) {
+                       withDockerRegistry([credentialsId: 'wgmartinez@gmail.com', url: "https://index.docker.io"]) {
                             // we give the image the same version as the .war package
 //                          def image = docker.build("<myDockerRegistry>/<myDockerProjectRepo>:${branchVersion}", "--build-arg PACKAGE_VERSION=${branchVersion} ./tmp-docker-build-context")
                             //def image = docker.build("https://hub.docker.com/camel-order-api:master", "--build-arg PACKAGE_VERSION=master ./tmp-docker-build-context").inside("--volume=/var/run/docker.sock:/var/run/docker.sock")
