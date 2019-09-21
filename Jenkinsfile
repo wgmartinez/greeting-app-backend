@@ -13,11 +13,7 @@ pipeline {
                     withDockerRegistry([credentialsId: 'wgmartinez', url: "https://hub.docker.com/"]) {
                         // we give the image the same version as the .war package
 //                        def image = docker.build("<myDockerRegistry>/<myDockerProjectRepo>:${branchVersion}", "--build-arg PACKAGE_VERSION=${branchVersion} ./tmp-docker-build-context")
-                          //def image = docker.build("<myDockerRegistry>/<myDockerProjectRepo>:master", "--build-arg PACKAGE_VERSION=master ./tmp-docker-build-context")
-                        
-                        docker.build('my-build-image').inside("--volume=/var/run/docker.sock:/var/run/docker.sock") {
-   // The build here
-}
+                          def image = docker.build("https://hub.docker.com/camel-order-api:master", "--build-arg PACKAGE_VERSION=master ./tmp-docker-build-context").inside("--volume=/var/run/docker.sock:/var/run/docker.sock")
                           image.push()
                     }   
                 }
