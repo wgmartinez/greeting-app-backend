@@ -6,11 +6,7 @@ pipeline {
     }  
     stages {
         stage('build') {
-            steps {
-                sh 'mvn --version'
-                sh 'mvn clean install'
-                sh 'docker -version'
-            }
+            sh 'mvn clean install'
         }
     }
 }
