@@ -10,7 +10,6 @@ pipeline {
                 sh 'mvn clean install'
             }
             steps {
-                sh '
                     withDockerServer([credentialsId:"equifax_au", uri: "tcp://10.152.0.2:2376"]) {
                     withDockerRegistry([credentialsId: 'wgmartinez', url: "https://hub.docker.com/"]) {
                         // we give the image the same version as the .war package
@@ -20,8 +19,6 @@ pipeline {
                         //image.push(message: "test")
                     }   
                 }
-
-                '
             }
         }
     }
