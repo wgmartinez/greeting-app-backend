@@ -1,7 +1,7 @@
 steps:
 # Step1: Build the service
 - name: 'gcr.io/cloud-builders/mvn'
-  args: ['install','-DskipTests']
+  args: ['clean','install','-DskipTests']
 # Step 2: Build a docker image and push it to GCR
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/greeting-app-backend-service', '.']

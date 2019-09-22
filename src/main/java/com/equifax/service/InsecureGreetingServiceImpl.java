@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,9 +32,14 @@ public class InsecureGreetingServiceImpl implements GreetingService {
     @Override
     public ResponseEntity<String> greet(String country, String firstName) {
         GreetingModel model = new GreetingModel();
-        model.setCountry(country);
-        model.setMessage(repo.get(country));
-        model.setFirstName(firstName);
+        try {
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            model.setCountry(country);
+            model.setMessage(repo.get(country) + " - " + inetAddress.getHostAddress());
+            model.setFirstName(firstName);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         return ResponseEntity.ok(model.toString());
     }
