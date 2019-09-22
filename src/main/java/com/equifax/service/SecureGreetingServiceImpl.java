@@ -31,12 +31,16 @@ public class SecureGreetingServiceImpl implements GreetingService {
 
 
     @Override
-    public ResponseEntity<String> greet(String country, String firstName) throws Exception {
-        InetAddress inetAddress = InetAddress.getLocalHost();
+    public ResponseEntity<String> greet(String country, String firstName) {
         GreetingModel model = new GreetingModel();
-        model.setCountry(country);
-        model.setMessage(repo.get(country) + " - " + inetAddress.getHostAddress());
-        model.setFirstName(firstName);
+        try {
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            model.setCountry(country);
+            model.setMessage(repo.get(country) + " - " + inetAddress.getHostAddress());
+            model.setFirstName(firstName);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         return ResponseEntity.ok(model.toString());
     }
