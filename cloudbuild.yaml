@@ -7,7 +7,7 @@ steps:
   args: ['build', '--tag=gcr.io/$PROJECT_ID/greeting-app-backend-service', '.']
 # Step 3: Deploy the docker image in Kubernetes
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'k8s/'
+  args: ['apply', '-f', 'k8s/']
   env:
   - 'CLOUDSDK_COMPUTE_REGION=australia-southeast1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=ehrp-cluster'
