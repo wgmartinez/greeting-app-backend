@@ -18,4 +18,4 @@ spec:
       - image: gcr.io/cicd-implementation/greeting-app-backend-service:latest
         name: greeting-app-backend-service
         ports:
-        - containerPort: 9090
+        - containerPort: 8080
