@@ -7,7 +7,6 @@ spring:
     allowBeanDefinitionOverriding: true
 
 server:
-  port: 9090
   servlet:
     context-path: /country-greeting
     session:
