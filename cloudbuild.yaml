@@ -1,6 +1,25 @@
 steps:
+# Step1: Build the service
 - name: 'gcr.io/cloud-builders/mvn'
   args: ['install','-DskipTests']
+# Step 2: Build a docker image and push it to GCR
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/greeting-app-backend-service', '.']
+# Step 3: Deploy the docker image in Kubernetes
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/'
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=australia-southeast1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=ehrp-cluster'
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   'greeting-app-backend-service', 
+   'greeting-app-backend-service=gcr.io/$PROJECT_ID/greeting-app-backend-service:$TAG_NAME'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=australia-southeast1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=ehrp-cluster'
 images: ['gcr.io/$PROJECT_ID/greeting-app-backend-service']

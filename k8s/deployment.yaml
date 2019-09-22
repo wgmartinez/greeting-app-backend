@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: greeting-app-backend-service
+  name: greeting-app-backend-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: greeting-app-backend-service
+  template:
+    metadata:
+      labels:
+        run: greeting-app-backend-service
+    spec:
+      containers:
+      - image: gcr.io/cicd-implementation/greeting-app-backend-service:latest
+        name: greeting-app-backend-service
+        ports:
+        - containerPort: 9090
