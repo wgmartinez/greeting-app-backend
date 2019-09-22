@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,10 +31,11 @@ public class SecureGreetingServiceImpl implements GreetingService {
 
 
     @Override
-    public ResponseEntity<String> greet(String country, String firstName) {
+    public ResponseEntity<String> greet(String country, String firstName) throws Exception {
+        InetAddress inetAddress = InetAddress.getLocalHost();
         GreetingModel model = new GreetingModel();
         model.setCountry(country);
-        model.setMessage(repo.get(country));
+        model.setMessage(repo.get(country) + " - " + inetAddress.getHostAddress());
         model.setFirstName(firstName);
 
         return ResponseEntity.ok(model.toString());
